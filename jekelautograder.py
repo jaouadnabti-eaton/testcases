@@ -50,16 +50,6 @@ def main():
 
     print("Also known as the \x1b[1mJOHN JEKEL GITHUB THING\x1b[0m\n")
 
-
-    basic_sanity_checks()
-
-    tarball_info = get_info_about_tarball()
-
-    extract_tarball_and_compile(tarball_info[0], tarball_info[1], tarball_info[2])
-
-    if tarball_info[2] == 3:
-        project3_corpus_logic()
-    elif tarball_info[2] == 4:
         project4_dataset_logic()
 
     testcases = read_manifest(tarball_info[2])
