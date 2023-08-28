@@ -7,7 +7,17 @@ triggers {
         stage('Build') {
             steps {
                 echo 'Building..'
-           
+           	script{
+                	echo "${env.WORKSPACE}"
+					typestage = "Build the code for 48 V"
+			   		env.stageLine = "=" * typestage.length()
+                	echo "${'\n'}${env.stageLine}${env.stageLine}${'\n'}${typestage}${'\n'}${env.stageLine}${env.stageLine}${'\n'}"
+					bat 'del polyspacebatchmode.m'
+                    bat 'set Path = C:\\Program Files\\MATLAB\\R2023a\\bin'
+                    bat 'echo addpath(\'%WORKSPACE%\\%BRANCH_NAME%\\NSI-48V-DC-DC-Build\'); >> polyspacebatchmode.m'
+                    bat 'echo  build -b; >> polyspacebatchmode.m'
+                    bat '"C:\\Program Files\\MATLAB\\R2023a\\bin\\matlab.exe" -batch polyspacebatchmode'    
+				}
             }
 post {
 				always{
